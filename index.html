@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Coding Review</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Secure Coding Review</h1>
+        <p>Identifying Security Vulnerabilities and Secure Coding Practices</p>
+    </header>
+
+    <main class="container">
+
+        <section class="card">
+            <h2>Project Overview</h2>
+            <p>
+                This project demonstrates a secure coding review of a JavaScript
+                web application. It identifies security vulnerabilities and
+                provides recommendations for safer coding.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Selected Programming Language & Application</h2>
+            <p><strong>Language:</strong> JavaScript</p>
+            <p><strong>Application:</strong> User Login System</p>
+        </section>
+
+        <section class="card">
+            <h2>Vulnerable Code Example</h2>
+
+            <pre class="code-box">
+const username = document.getElementById("user").value;
+
+document.getElementById("output").innerHTML =
+"Welcome " + username;
+            </pre>
+
+            <p>
+                This code is vulnerable to Cross-Site Scripting (XSS)
+                because it uses <strong>innerHTML</strong>.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Secure Code Example</h2>
+
+            <pre class="code-box">
+const username = document.getElementById("user").value;
+
+document.getElementById("output").textContent =
+"Welcome " + username;
+            </pre>
+
+            <p>
+                Using <strong>textContent</strong> prevents malicious
+                script execution.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Security Vulnerabilities Found</h2>
+
+            <table>
+                <tr>
+                    <th>Vulnerability</th>
+                    <th>Risk</th>
+                    <th>Description</th>
+                </tr>
+
+                <tr>
+                    <td>Cross-Site Scripting (XSS)</td>
+                    <td>High</td>
+                    <td>Unsafe rendering of user input.</td>
+                </tr>
+
+                <tr>
+                    <td>Weak Password Policy</td>
+                    <td>Medium</td>
+                    <td>Easy-to-guess passwords allowed.</td>
+                </tr>
+
+                <tr>
+                    <td>Hardcoded Credentials</td>
+                    <td>Critical</td>
+                    <td>Sensitive data stored in source code.</td>
+                </tr>
+
+                <tr>
+                    <td>Input Validation Issues</td>
+                    <td>High</td>
+                    <td>Unvalidated user data accepted.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Static Analysis Tools</h2>
+
+            <ul>
+                <li>ESLint Security Plugin</li>
+                <li>SonarQube</li>
+                <li>Semgrep</li>
+                <li>OWASP Dependency Check</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Best Practices</h2>
+
+            <ul>
+                <li>Validate all user inputs.</li>
+                <li>Use HTTPS everywhere.</li>
+                <li>Store secrets securely.</li>
+                <li>Keep dependencies updated.</li>
+                <li>Implement strong authentication.</li>
+                <li>Apply least privilege principle.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Remediation Recommendations</h2>
+
+            <table>
+                <tr>
+                    <th>Issue</th>
+                    <th>Solution</th>
+                </tr>
+
+                <tr>
+                    <td>XSS</td>
+                    <td>Use textContent and sanitize inputs.</td>
+                </tr>
+
+                <tr>
+                    <td>Weak Passwords</td>
+                    <td>Enforce strong password rules.</td>
+                </tr>
+
+                <tr>
+                    <td>Hardcoded Credentials</td>
+                    <td>Use environment variables.</td>
+                </tr>
+
+                <tr>
+                    <td>Input Validation</td>
+                    <td>Validate and sanitize all inputs.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Security Review Checklist</h2>
+
+            <div class="checklist">
+                <label><input type="checkbox"> Input Validation Implemented</label>
+                <label><input type="checkbox"> Output Sanitization Applied</label>
+                <label><input type="checkbox"> HTTPS Enabled</label>
+                <label><input type="checkbox"> Strong Password Policy</label>
+                <label><input type="checkbox"> Security Testing Completed</label>
+            </div>
+
+            <button onclick="reviewStatus()">
+                Complete Review
+            </button>
+
+            <p id="result"></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Secure Coding Review Project | HTML, CSS & JavaScript</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
